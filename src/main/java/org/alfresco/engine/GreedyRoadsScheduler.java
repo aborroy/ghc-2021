@@ -12,11 +12,10 @@ public class GreedyRoadsScheduler implements Scheduler
     {
         Output output = new Output();
         IntStream.range(0, input.getIntersections()).forEach(intersection -> {
-            System.out.println("# " + intersection);
             input.getStreets().stream()
                  .filter(street -> street.getEndIntersection() == intersection)
+                 .filter(street -> input.getCars().stream().anyMatch(car -> car.getNameOfStreets().contains(street.getName())))
                  .forEach(street -> {
-                     System.out.println("##" + street);
                      output.addToCycle(intersection, street, 1);
                  });
         });
