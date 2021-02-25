@@ -10,6 +10,8 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.alfresco.bean.Car;
 import org.alfresco.bean.Input;
@@ -76,13 +78,14 @@ public class Translator {
 	public static void writeOutput(Output output, File outFile) throws Exception {
 
 		try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outFile)))) {
-			writer.write(output.getIntersections().size() + "\n");
-			output.getIntersections().forEach(intersection ->{
+			Map<Integer, LinkedHashMap<String, Integer>> schedule = output.getSchedule();
+			writer.write(schedule.size() + "\n");
+			schedule.entrySet().forEach(entry ->{
 				try {
-					writer.write(intersection.getId() + "\n");
-					intersection.getCycles().forEach(cycle -> {
+					writer.write(entry.getKey() + "\n");
+					entry.getValue().forEach((street, duration) -> {
 						try {
-							writer.write(cycle.getStreet() + " " + cycle.getSeconds() + "\n");
+							writer.write(street + " " + duration + "\n");
 						} catch (IOException e) {
 							e.printStackTrace();
 						}

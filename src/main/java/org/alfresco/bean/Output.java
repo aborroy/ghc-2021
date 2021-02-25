@@ -1,22 +1,26 @@
 package org.alfresco.bean;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class Output {
+    Map<Integer, LinkedHashMap<String, Integer>> schedule = new HashMap<>();
 	
-	List<Intersection> intersections;
-
-	public List<Intersection> getIntersections() {
-		return intersections;
+	public Map<Integer, LinkedHashMap<String, Integer>> getSchedule() {
+		return schedule;
 	}
 
-	public void setIntersections(List<Intersection> intersections) {
-		this.intersections = intersections;
+	public void addToCycle(Intersection intersection, Street street, int duration) {
+	    if (!schedule.containsKey(intersection.id)) {
+	        schedule.put(intersection.id, new LinkedHashMap<>());
+        }
+		schedule.get(intersection.id).put(street.name, duration);
 	}
 
 	@Override
 	public String toString() {
-		return "Output [intersections=" + intersections + "]";
+		return "Output [schedule=" + schedule + "]";
 	}
 
 }
