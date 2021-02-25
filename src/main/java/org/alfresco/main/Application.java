@@ -44,8 +44,6 @@ public class Application implements CommandLineRunner {
 		}
 		File inFile = new File("in/" + fileIn.toString());
 		Input in = Translator.getInput(inFile);
-
-		System.out.println(in);
 		
 		Object strategy = ps.getProperty("strategy");
 		if (strategy == null) {
