@@ -38,7 +38,6 @@ public class Translator {
 			int lineCount = 0;
 			for (String line; (line = br.readLine()) != null;) {
 				String[] numbers = line.split(" ");
-				System.out.println("Line count: " + lineCount + ", numbers: " + numbers);
 				if (lineCount == 0) {
 					input.setDuration(Integer.valueOf(numbers[0]));
 					input.setIntersections(Integer.valueOf(numbers[1]));
@@ -46,7 +45,7 @@ public class Translator {
 					input.setCarsNumber(Integer.valueOf(numbers[3]));
 					input.setBonusPoints(Integer.valueOf(numbers[4]));
 				}
-				else if (lineCount < input.getStreetsNumber() - 1) {
+				else if (lineCount < input.getStreetsNumber() + 1) {
 					Street street = new Street();
 					street.setStartIntersection(Integer.valueOf(numbers[0]));
 					street.setEndIntersection(Integer.valueOf(numbers[1]));
