@@ -30,8 +30,8 @@ public class Application implements CommandLineRunner {
 	private SimpleEngine simpleEngine = new SimpleEngine();
 
 	private String defaultFile = "a.txt";
-	private String defaultStrategy = "2";
-	private String defaultFileOut = "a.txt";
+	private String defaultStrategy = "3";
+	private String defaultFileOut = "a.out";
 
 	@Override
 	public void run(String... args) throws Exception {

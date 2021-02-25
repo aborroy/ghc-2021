@@ -14,6 +14,7 @@ mvn clean install
 
 for x in a b c d e f
 do
+    echo "Processing $x.txt"
     rm out/$x.out
     java -jar target/hashcode-2021-1.0.0.jar --fileIn=$x.txt --fileOut=$x.out --strategy=$STRATEGY
 done
