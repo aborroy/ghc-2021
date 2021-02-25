@@ -19,7 +19,7 @@ public class PrioritiseRoadsByShortRoads implements Scheduler {
 				 .filter(street -> street.getEndIntersection() == intersection)
 				 .filter(street -> input.getCars().stream().anyMatch(car -> car.getNameOfStreets().contains(street.getName())))
 				 .forEach(street -> {
-					 output.addToCycle(intersection, street, 1);
+					 output.addToCycle(intersection, street, 2);
 				 });
 		});
 
