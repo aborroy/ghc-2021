@@ -3,12 +3,8 @@ package org.alfresco.engine;
 import java.util.Comparator;
 import java.util.stream.IntStream;
 
-import com.google.common.collect.HashMultiset;
-import com.google.common.collect.Multiset;
-
 import org.alfresco.bean.Input;
 import org.alfresco.bean.Output;
-import org.alfresco.bean.Street;
 
 public class PrioritiseRoadsByShortRoads implements Scheduler {
 	@Override
@@ -16,8 +12,7 @@ public class PrioritiseRoadsByShortRoads implements Scheduler {
 		Output output = new Output();
 
 		// Sort the streets by their duration.
-		Multiset<String> drivenOnCount = HashMultiset.create();
-		input.getStreets().sort(Comparator.comparing(Street::getTime));
+		input.getStreets().sort(Comparator.comparingInt(street -> -street.getTime()));
 
 		IntStream.range(0, input.getIntersections()).forEach(intersection -> {
 			input.getStreets().stream()
