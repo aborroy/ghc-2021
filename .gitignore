@@ -1,0 +1,8 @@
+
+*.class
+*.jar
+
+target/
+.settings/
+
+src.zip
