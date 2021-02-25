@@ -13,15 +13,15 @@ public class Output {
 
     /**
      * Add an instruction for a set of traffic lights.
-     * @param intersection The intersection with the traffic lights.
+     * @param intersection The id of the intersection with the traffic lights.
      * @param street The street leading to the intersection.
      * @param duration The duration to turn on the lights for.
      */
-	public void addToCycle(Intersection intersection, Street street, int duration) {
-	    if (!schedule.containsKey(intersection.id)) {
-	        schedule.put(intersection.id, new LinkedHashMap<>());
+	public void addToCycle(int intersection, Street street, int duration) {
+	    if (!schedule.containsKey(intersection)) {
+	        schedule.put(intersection, new LinkedHashMap<>());
         }
-		schedule.get(intersection.id).put(street.name, duration);
+		schedule.get(intersection).put(street.name, duration);
 	}
 
 	@Override
