@@ -1,11 +1,10 @@
 package org.alfresco.bean;
 
-import java.util.List;
+import java.util.Collection;
 
 public class Intersection {
 	
 	Integer id;	
-	List<Cycle> cycles;
 	
 	public Integer getId() {
 		return id;
@@ -13,18 +12,9 @@ public class Intersection {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public List<Cycle> getCycles() {
-		return cycles;
-	}
-	public void setCycles(List<Cycle> cycles) {
-		this.cycles = cycles;
-	}
-	@Override
-	public String toString() {
-		return "Intersection [id=" + id + ", cycles=" + cycles + ", getId()=" + getId() + ", getCycles()=" + getCycles()
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
-				+ "]";
+	
+	public static Intersection findById(Collection<Intersection> intersections, Integer id) {
+	    return intersections.stream().filter(intersection -> id == intersection.getId()).findFirst().orElse(null);
 	}
 	
-
 }
