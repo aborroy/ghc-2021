@@ -10,8 +10,11 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.alfresco.bean.Car;
 import org.alfresco.bean.Input;
@@ -34,6 +37,9 @@ public class Translator {
 		Input input = new Input();
 		input.setStreets(new ArrayList<Street>());
 		input.setCars(new ArrayList<Car>());
+
+		Map<String, Street> streetMap = new HashMap<>();
+
 		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 			int lineCount = 0;
 			for (String line; (line = br.readLine()) != null;) {
@@ -52,13 +58,17 @@ public class Translator {
 					street.setName(numbers[2]);
 					street.setTime(Integer.valueOf(numbers[3]));
 					input.getStreets().add(street);
+
+					streetMap.put(street.getName(), street);
 				}
 				else {
 					Car car = new Car();
 					car.setNumberOfStreets(Integer.valueOf(numbers[0]));
 					String[] subarray = new String[numbers.length -1];
 			        System.arraycopy(numbers, 1, subarray, 0, numbers.length - 1);
-			        car.setNameOfStreets(Arrays.asList(subarray));
+					car.setNameOfStreets(Arrays.asList(subarray));
+					// This works because all the streets are listed in the input before all the cars.
+					car.setStreets(getStreetsFromNames(streetMap, car.getNameOfStreets()));
 			        input.getCars().add(car);
 				}
 				lineCount++;
@@ -66,7 +76,12 @@ public class Translator {
 		}
 		return input;
 	}
-	
+
+	private static List<Street> getStreetsFromNames(Map<String, Street> streetMap, List<String> nameOfStreets)
+	{
+		return nameOfStreets.stream().map(name -> streetMap.get(name)).collect(Collectors.toList());
+	}
+
 	/**
 	 * Get Output File from Output Bean
 	 * 
