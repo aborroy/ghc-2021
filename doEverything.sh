@@ -10,6 +10,8 @@ rm out/src.zip
 ./zip.sh
 cp ./src.zip out/src.zip
 
+mvn clean install
+
 for x in a b c d e f
 do
     rm out/$x.out
