@@ -11,7 +11,8 @@ public class SimpleEngine {
 
 	private List<Scheduler> schedulers = asList(
 			new SimpleScheduler(),
-			new GreedyRoadsScheduler()
+			new GreedyRoadsScheduler(),
+			new PrioritiseRoadsByCars()
 	);
 
 	public Output run(Input in, int strategyId) {
