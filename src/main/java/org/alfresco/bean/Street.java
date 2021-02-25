@@ -31,5 +31,10 @@ public class Street {
 	public void setTime(Integer time) {
 		this.time = time;
 	}
+	@Override
+	public String toString() {
+		return "Street [startIntersections=" + startIntersections + ", endIntersections=" + endIntersections + ", name="
+				+ name + ", time=" + time + "]";
+	}
 
 }

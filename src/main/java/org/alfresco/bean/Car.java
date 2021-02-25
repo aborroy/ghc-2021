@@ -19,4 +19,8 @@ public class Car {
 	public void setNameOfStreets(List<String> nameOfStreets) {
 		this.nameOfStreets = nameOfStreets;
 	}
+	@Override
+	public String toString() {
+		return "Car [numberOfStreets=" + numberOfStreets + ", nameOfStreets=" + nameOfStreets + "]";
+	}
 }

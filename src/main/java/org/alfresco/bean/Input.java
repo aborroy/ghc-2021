@@ -55,5 +55,12 @@ public class Input {
 	public void setCars(List<Car> cars) {
 		this.cars = cars;
 	}
+	
+	@Override
+	public String toString() {
+		return "Input [duration=" + duration + ", intersections=" + intersections + ", streetsNumber=" + streetsNumber
+				+ ", carsNumber=" + carsNumber + ", bonusPoints=" + bonusPoints + ", streets=" + streets + ", cars="
+				+ cars + "]";
+	}
 
 }

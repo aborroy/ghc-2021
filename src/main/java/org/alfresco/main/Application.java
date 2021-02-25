@@ -37,6 +37,8 @@ public class Application implements CommandLineRunner {
 		File inFile = new File(ps.getProperty("fileIn").toString());
 		Input in = Translator.getInput(inFile);
 		
+		System.out.println(in);
+		
 		Integer strategyNumber = Integer.valueOf(ps.getProperty("strategy").toString());
 		Output out = simpleEngine.run(in, Strategy.values()[strategyNumber]);
 		

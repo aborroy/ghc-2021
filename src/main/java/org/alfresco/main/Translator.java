@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.alfresco.bean.Car;
 import org.alfresco.bean.Input;
@@ -42,7 +43,7 @@ public class Translator {
 					input.setCarsNumber(Integer.valueOf(numbers[3]));
 					input.setBonusPoints(Integer.valueOf(numbers[4]));
 				}
-				else if (lineCount < input.getStreetsNumber()) {
+				else if (lineCount < input.getStreetsNumber() - 1) {
 					Street street = new Street();
 					street.setStartIntersections(Integer.valueOf(numbers[0]));
 					street.setEndIntersections(Integer.valueOf(numbers[1]));
@@ -53,6 +54,10 @@ public class Translator {
 				else {
 					Car car = new Car();
 					car.setNumberOfStreets(Integer.valueOf(numbers[0]));
+					String[] subarray = new String[numbers.length -1];
+			        System.arraycopy(numbers, 1, subarray, 0, numbers.length - 1);
+			        car.setNameOfStreets(Arrays.asList(subarray));
+			        input.getCars().add(car);
 				}
 				lineCount++;
 			}
