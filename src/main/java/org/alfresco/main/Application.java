@@ -30,19 +30,35 @@ public class Application implements CommandLineRunner {
 
 	private SimpleEngine simpleEngine = new SimpleEngine();
 
+	private String defaultFile = "a.txt";
+	private String defaultStrategy = "0";
+	private String defaultFileOut = "out.txt";
+
 	@Override
 	public void run(String... args) throws Exception {
 
 		PropertySource<?> ps = new SimpleCommandLinePropertySource(args);
-		File inFile = new File(ps.getProperty("fileIn").toString());
+		Object fileIn = ps.getProperty("fileIn");
+		if (fileIn == null) {
+			fileIn = new File(defaultFile);
+		}
+		File inFile = new File("in/" + fileIn.toString());
 		Input in = Translator.getInput(inFile);
-		
+
 		System.out.println(in);
 		
-		Integer strategyNumber = Integer.valueOf(ps.getProperty("strategy").toString());
+		Object strategy = ps.getProperty("strategy");
+		if (strategy == null) {
+			strategy = defaultStrategy;
+		}
+		Integer strategyNumber = Integer.valueOf(strategy.toString());
 		Output out = simpleEngine.run(in, Strategy.values()[strategyNumber]);
-		
-		File outFile = new File(ps.getProperty("fileOut").toString());
+
+		Object fileOut = ps.getProperty("fileOut");
+		if (fileOut == null) {
+			fileOut = defaultFileOut;
+		}
+		File outFile = new File("out/" + fileOut.toString());
 		Translator.writeOutput(out, outFile);
 
 	}
