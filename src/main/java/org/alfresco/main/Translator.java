@@ -7,10 +7,12 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
-import java.util.Arrays;
+import java.util.ArrayList;
 
+import org.alfresco.bean.Car;
 import org.alfresco.bean.Input;
 import org.alfresco.bean.Output;
+import org.alfresco.bean.Street;
 
 /**
  * Translate files into beans and reverse.
@@ -26,11 +28,32 @@ public class Translator {
 	 */
 	public static Input getInput(File file) throws Exception {
 		Input input = new Input();
+		input.setStreets(new ArrayList<Street>());
+		input.setCars(new ArrayList<Car>());
 		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 			int lineCount = 0;
 			for (String line; (line = br.readLine()) != null;) {
-				int[] numbers = Arrays.stream(line.split(" ")).mapToInt(Integer::parseInt).toArray();
+				String[] numbers = line.split(" ");
 				System.out.println("Line count: " + lineCount + ", numbers: " + numbers);
+				if (lineCount == 0) {
+					input.setDuration(Integer.valueOf(numbers[0]));
+					input.setIntersections(Integer.valueOf(numbers[1]));
+					input.setStreetsNumber(Integer.valueOf(numbers[2]));
+					input.setCarsNumber(Integer.valueOf(numbers[3]));
+					input.setBonusPoints(Integer.valueOf(numbers[4]));
+				}
+				else if (lineCount < input.getStreetsNumber()) {
+					Street street = new Street();
+					street.setStartIntersections(Integer.valueOf(numbers[0]));
+					street.setEndIntersections(Integer.valueOf(numbers[1]));
+					street.setName(numbers[2]);
+					street.setTime(Integer.valueOf(numbers[3]));
+					input.getStreets().add(street);
+				}
+				else {
+					Car car = new Car();
+					car.setNumberOfStreets(Integer.valueOf(numbers[0]));
+				}
 				lineCount++;
 			}
 		}
