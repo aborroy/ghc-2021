@@ -46,8 +46,8 @@ public class Translator {
 				}
 				else if (lineCount < input.getStreetsNumber() - 1) {
 					Street street = new Street();
-					street.setStartIntersections(Integer.valueOf(numbers[0]));
-					street.setEndIntersections(Integer.valueOf(numbers[1]));
+					street.setStartIntersection(Integer.valueOf(numbers[0]));
+					street.setEndIntersection(Integer.valueOf(numbers[1]));
 					street.setName(numbers[2]);
 					street.setTime(Integer.valueOf(numbers[3]));
 					input.getStreets().add(street);

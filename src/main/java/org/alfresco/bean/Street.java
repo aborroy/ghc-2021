@@ -1,23 +1,25 @@
 package org.alfresco.bean;
 
+import java.util.Collection;
+
 public class Street {
 	
-	Integer startIntersections;
-	Integer endIntersections;
+	Integer startIntersection;
+	Integer endIntersection;
 	String name;
 	Integer time;
 	
-	public Integer getStartIntersections() {
-		return startIntersections;
+	public Integer getStartIntersection() {
+		return startIntersection;
 	}
-	public void setStartIntersections(Integer startIntersections) {
-		this.startIntersections = startIntersections;
+	public void setStartIntersection(Integer startIntersections) {
+		this.startIntersection = startIntersections;
 	}
-	public Integer getEndIntersections() {
-		return endIntersections;
+	public Integer getEndIntersection() {
+		return endIntersection;
 	}
-	public void setEndIntersections(Integer endIntersections) {
-		this.endIntersections = endIntersections;
+	public void setEndIntersection(Integer endIntersections) {
+		this.endIntersection = endIntersections;
 	}
 	public String getName() {
 		return name;
@@ -33,8 +35,12 @@ public class Street {
 	}
 	@Override
 	public String toString() {
-		return "Street [startIntersections=" + startIntersections + ", endIntersections=" + endIntersections + ", name="
+		return "Street [startIntersections=" + startIntersection + ", endIntersections=" + endIntersection + ", name="
 				+ name + ", time=" + time + "]";
+	}
+	
+	public static Street findByStreetName(Collection<Street> streets, String name) {
+	    return streets.stream().filter(street -> name.equals(street.getName())).findFirst().orElse(null);
 	}
 
 }
