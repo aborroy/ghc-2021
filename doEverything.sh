@@ -12,7 +12,7 @@ cp ./src.zip out/src.zip
 
 mvn clean install
 
-for x in a b c d e f
+for x in a b c e f
 do
     echo "Processing $x.txt"
     rm out/$x.out

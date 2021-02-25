@@ -13,7 +13,8 @@ public class SimpleEngine {
 			new SimpleScheduler(),
 			new GreedyRoadsScheduler(),
 			new PrioritiseRoadsByCars(),
-			new PrioritiseRoadsByShortRoads()
+			new PrioritiseRoadsByShortRoads(),
+			new GetCarsStarted()
 	);
 
 	public Output run(Input in, int strategyId) {
