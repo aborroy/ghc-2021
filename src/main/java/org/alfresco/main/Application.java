@@ -5,7 +5,6 @@ import java.io.File;
 import org.alfresco.bean.Input;
 import org.alfresco.bean.Output;
 import org.alfresco.engine.SimpleEngine;
-import org.alfresco.engine.SimpleEngine.Strategy;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -50,7 +49,7 @@ public class Application implements CommandLineRunner {
 			strategy = defaultStrategy;
 		}
 		Integer strategyNumber = Integer.valueOf(strategy.toString());
-		Output out = simpleEngine.run(in, Strategy.values()[strategyNumber]);
+		Output out = simpleEngine.run(in, strategyNumber);
 
 		Object fileOut = ps.getProperty("fileOut");
 		if (fileOut == null) {
