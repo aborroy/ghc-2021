@@ -82,6 +82,7 @@ public class Translator {
 			schedule.entrySet().forEach(entry ->{
 				try {
 					writer.write(entry.getKey() + "\n");
+					writer.write(entry.getValue().size() + "\n");
 					entry.getValue().forEach((street, duration) -> {
 						try {
 							writer.write(street + " " + duration + "\n");

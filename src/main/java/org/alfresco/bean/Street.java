@@ -3,22 +3,22 @@ package org.alfresco.bean;
 import java.util.Collection;
 
 public class Street {
-	
+	// Use objects here, but primitives in the getters/setters to ensure these aren't null after initialisation.
 	Integer startIntersection;
 	Integer endIntersection;
 	String name;
 	Integer time;
-	
-	public Integer getStartIntersection() {
+
+	public int getStartIntersection() {
 		return startIntersection;
 	}
-	public void setStartIntersection(Integer startIntersections) {
+	public void setStartIntersection(int startIntersections) {
 		this.startIntersection = startIntersections;
 	}
-	public Integer getEndIntersection() {
+	public int getEndIntersection() {
 		return endIntersection;
 	}
-	public void setEndIntersection(Integer endIntersections) {
+	public void setEndIntersection(int endIntersections) {
 		this.endIntersection = endIntersections;
 	}
 	public String getName() {
@@ -27,10 +27,10 @@ public class Street {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Integer getTime() {
+	public int getTime() {
 		return time;
 	}
-	public void setTime(Integer time) {
+	public void setTime(int time) {
 		this.time = time;
 	}
 	@Override

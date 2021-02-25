@@ -1,5 +1,6 @@
 package org.alfresco.engine;
 
+import static org.alfresco.engine.SimpleEngine.Strategy.GREEDY_ROADS;
 import static org.alfresco.engine.SimpleEngine.Strategy.SIMPLE;
 
 import java.util.HashMap;
@@ -11,7 +12,8 @@ import org.alfresco.bean.Output;
 public class SimpleEngine {
 
 	public enum Strategy {
-		SIMPLE, 
+		SIMPLE,
+		GREEDY_ROADS,
 		COMPLEX
 	}
 
@@ -19,6 +21,7 @@ public class SimpleEngine {
 
 	public SimpleEngine() {
 		schedulers.put(SIMPLE, new SimpleScheduler());
+		schedulers.put(GREEDY_ROADS, new GreedyRoadsScheduler());
 	}
 
 	public Output run(Input in, Strategy strategy) {

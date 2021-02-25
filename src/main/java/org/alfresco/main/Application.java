@@ -31,7 +31,7 @@ public class Application implements CommandLineRunner {
 	private SimpleEngine simpleEngine = new SimpleEngine();
 
 	private String defaultFile = "a.txt";
-	private String defaultStrategy = "0";
+	private String defaultStrategy = "1";
 	private String defaultFileOut = "out.txt";
 
 	@Override
